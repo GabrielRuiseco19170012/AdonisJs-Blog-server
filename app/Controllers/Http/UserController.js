@@ -76,17 +76,6 @@ class UserController {
 
   }
 
-  // /**
-  //  * Create/save a new user.
-  //  * POST users
-  //  *
-  //  * @param {object} ctx
-  //  * @param {Request} ctx.request
-  //  * @param {Response} ctx.response
-  //  */
-  // async store({request, response}) {
-  // }
-
   /**
    * Display a single user.
    * GET users/:id
@@ -105,18 +94,6 @@ class UserController {
 
     return response.json(res)
   }
-
-  // /**
-  //  * Render a form to update an existing user.
-  //  * GET users/:id/edit
-  //  *
-  //  * @param {object} ctx
-  //  * @param {Request} ctx.request
-  //  * @param {Response} ctx.response
-  //  * @param {View} ctx.view
-  //  */
-  // async edit({params, request, response, view}) {
-  // }
 
   /**
    * Update user details.
