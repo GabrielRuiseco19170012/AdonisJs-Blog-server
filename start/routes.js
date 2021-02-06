@@ -28,6 +28,7 @@ Route.get('update', 'UserController.index').middleware(['auth','FindPersona'])
 Route.get('delete', 'UserController.destroy').middleware(['auth','FindPersona'])
 Route.get('loggedIn', 'UserController.loggedIn')
 Route.get('loginCheck', 'UserController.loginCheck')
+
 Route.group(()=>{
   Route.get('/show/publication/','PublicationController.selectPublications')
   Route.get('/show/publication/id','PublicationController.selectPublicationsByID')
