@@ -7,7 +7,7 @@ class PublicationSchema extends Schema {
   up () {
     this.create('publications', (table) => {
       table.increments()
-      table.integer('user_id').unsigned().references('id').inTable('users')
+      table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
       table.string('title', 80).notNullable()
       table.string('content', 80).notNullable()
       table.timestamps()
