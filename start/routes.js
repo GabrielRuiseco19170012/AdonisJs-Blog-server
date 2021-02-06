@@ -17,5 +17,14 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return {greeting: 'Hello world in JSON'}
 })
+
+Route.post('login', 'UserController.login')
+Route.post('register', 'UserController.create')
+Route.get('getuser/:id', 'UserController.show').middleware(['auth','FindPersona'])
+Route.get('getallusers', 'UserController.index').middleware('auth')
+Route.get('update', 'UserController.index').middleware(['auth','FindPersona'])
+Route.get('delete', 'UserController.destroy').middleware(['auth','FindPersona'])
+Route.get('loggedIn', 'UserController.loggedIn')
+Route.get('loginCheck', 'UserController.loginCheck')
