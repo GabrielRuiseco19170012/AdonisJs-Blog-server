@@ -38,3 +38,20 @@ Route.group(()=>{
   Route.put('/update/publication/text/','PublicationController.updatePublicationText')
   Route.delete('/delete/publication/','PublicationController.deletePublication')
 }).prefix('api/v1')
+
+//Create commentary
+Route.post('create/commentary','CommentaryController.createCommentary')
+//Read commentary
+Route.group(() => {
+  Route.get('commentary', 'CommentaryController.showCommentary')
+  Route.get('comments', 'CommentaryController.showAllCommentary')
+  Route.get('publication/comments', 'CommentaryController.showCommentaryPublication')
+}).prefix('show/')
+//Update commentary
+Route.group(() => {
+  Route.post('title', 'CommentaryController.updateCommentaryTitle')
+  Route.post('content', 'CommentaryController.updateCommentaryContent')
+}).prefix('update/')
+//Delete commentary
+Route.delete('delete/commentary','CommentaryController.deleteCommentary')
+
