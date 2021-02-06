@@ -19,3 +19,12 @@ const Route = use('Route')
 Route.get('/', () => {
   return { greeting: 'Hello world in JSON' }
 })
+Route.group(()=>{
+  Route.get('/show/publication/','PublicationController.selectPublications')
+  Route.get('/show/publication/id','PublicationController.selectPublicationsByID')
+  Route.get('/show/publication/title','PublicationController.selectPublicationsByTitle')
+  Route.post('/insert/publication/','PublicationController.insertPublications')
+  Route.put('/update/publication/title/','PublicationController.updatePublicationTitle')
+  Route.put('/update/publication/text/','PublicationController.updatePublicationText')
+  Route.delete('/delete/publication/','PublicationController.deletePublication')
+}).prefix('api/v1')
