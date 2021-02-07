@@ -22,10 +22,10 @@ Route.get('/', () => {
 
 Route.post('login', 'UserController.login')
 Route.post('register', 'UserController.create')
-Route.get('getuser/:id', 'UserController.show').middleware(['auth','FindPersona'])
+Route.get('getuser/:id', 'UserController.show').middleware(['auth','FindUser'])
 Route.get('getallusers', 'UserController.index').middleware('auth')
-Route.put('update', 'UserController.index').middleware(['auth','FindPersona'])
-Route.delete('delete', 'UserController.destroy').middleware(['auth','FindPersona'])
+Route.put('update/:id', 'UserController.update').middleware(['auth','FindUser'])
+Route.delete('delete/:id', 'UserController.destroy').middleware(['auth','FindUser'])
 Route.get('loggedIn', 'UserController.loggedIn')
 Route.get('loginCheck', 'UserController.loginCheck')
 

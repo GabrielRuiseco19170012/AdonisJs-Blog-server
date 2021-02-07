@@ -87,6 +87,7 @@ class UserController {
 
     const user = await User.find(params.id)
     const res = {
+      username: user.username,
       first_name: user.first_name,
       last_name: user.last_name,
       email: user.email,
@@ -105,13 +106,12 @@ class UserController {
    */
   async update({request, response}) {
     try {
-      const data = request.only(['username','first_name', 'last_name', 'email', 'password']);
+      const data = request.only(['username','first_name', 'last_name', 'email']);
       const user = request.p
       user.username = data.username;
       user.first_name = data.first_name;
       user.last_name = data.last_name;
       user.email = data.email;
-      user.password = hashPassword(data.password);
       await user.save();
       return response.status(200).json(user);
     } catch (e) {
@@ -131,7 +131,7 @@ class UserController {
     try {
       const user = request.p
       await user.delete();
-      return response.status(204).send('status Persona deleted');
+      return response.status(204).send({message: 'User has been destroyed'});
     } catch (e) {
       return response.status(400).send({'Error': e.toString()});
     }
