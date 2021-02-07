@@ -27,7 +27,7 @@ class PublicationController {
       content
     })
     await newPublication.save()
-    return response.status(200).send("Publicación creada.")
+    return response.status(200).send({message: "Publicación creada."})
   }
 
   async updatePublicationTitle({request, response}) {

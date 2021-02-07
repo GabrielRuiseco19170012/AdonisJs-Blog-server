@@ -81,11 +81,12 @@ class UserController {
    * GET users/:id
    *
    * @param {object} ctx
+   * @param {Request} ctx.request
    * @param {Response} ctx.response
    */
-  async show({params, response}) {
+  async show({request, response}) {
 
-    const user = await User.find(params.id)
+    const user = request.p
     const res = {
       username: user.username,
       first_name: user.first_name,
@@ -106,7 +107,7 @@ class UserController {
    */
   async update({request, response}) {
     try {
-      const data = request.only(['username','first_name', 'last_name', 'email']);
+      const data = request.only(['username', 'first_name', 'last_name', 'email']);
       const user = request.p
       user.username = data.username;
       user.first_name = data.first_name;
@@ -156,10 +157,10 @@ class UserController {
   }
 
   async loginCheck({auth}) {
-    try{
+    try {
       const user = await auth.getUser()
       return !!user;
-    }catch (e){
+    } catch (e) {
       return false
     }
   }
