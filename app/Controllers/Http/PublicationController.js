@@ -27,7 +27,7 @@ class PublicationController {
       content
     })
     await newPublication.save()
-    return response.status(200).send({message: "Publicación creada."})
+    return response.status(200).send({  message: "Publicación creada."})
   }
 
   async updatePublicationTitle({request, response}) {
@@ -36,7 +36,7 @@ class PublicationController {
     const newTitle = await Publication.find(publication_id)
     newTitle.title = titlenew
     await newTitle.save()
-    return response.status(200).send("Titulo actualizado")
+    return response.status(200).send({message:"Titulo actualizado"})
   }
 
   async updatePublicationText({request, response}) {
@@ -45,14 +45,14 @@ class PublicationController {
     const newText = await Publication.find(publication_id)
     newText.content = textnew
     await newText.save()
-    return response.status(200).send("Texto actualizado")
+    return response.status(200).send({message:"Texto actualizado"})
   }
 
   async deletePublication({request, response}) {
     const publication_id = request.input('id')
     const deletedPublication = await Publication.find(publication_id)
     deletedPublication.delete()
-    return response.status(200).send("Publicación eliminada con exito")
+    return response.status(200).send({message:"Publicación eliminada con exito"})
   }
 }
 

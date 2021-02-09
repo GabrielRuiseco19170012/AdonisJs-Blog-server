@@ -26,6 +26,7 @@ Route.post('register', 'UserController.create')
 Route.post('login', 'UserController.login')
 Route.get('loggedIn', 'UserController.loggedIn')
 Route.get('loginCheck', 'UserController.loginCheck')
+Route.post('logout', 'UserController.logout').middleware('auth')
 // Read
 Route.get('getuser/:id', 'UserController.show').middleware(['auth', 'FindUser'])
 Route.get('getallusers', 'UserController.index').middleware('auth')

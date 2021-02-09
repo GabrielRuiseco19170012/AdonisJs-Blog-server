@@ -124,7 +124,7 @@ class CommentaryController {
   async showAllCommentary({response}) {
 
     const comment = await Commentary.all()
-    return response.status(200).send({Commentary: comment})
+    return response.status(200).json(comment)
 
   }
 
@@ -143,7 +143,7 @@ class CommentaryController {
 
     const publication_id = request.input('id')
     const comment = await Database.from('commentaries').where('publication_id', publication_id)
-    return response.status(200).send({Commentary: comment})
+    return response.status(200).json(comment)
 
   }
 

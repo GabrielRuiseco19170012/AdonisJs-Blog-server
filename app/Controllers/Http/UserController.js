@@ -1,7 +1,7 @@
 'use strict'
-const {hashPassword} = require("@adonisjs/auth/templates/UserHook");
 const User = use('App/Models/User')
 const {validate} = use('Validator')
+const Token = use('App/Models/Token')
 
 /** @typedef {import('@adonisjs/framework/src/Request')} Request */
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
@@ -138,23 +138,52 @@ class UserController {
     }
   }
 
+  /**
+   * Login using email and password
+   *
+   *
+   * @param {object} ctx
+   * @param {Request} ctx.request
+   * @param {Response} ctx.response
+   */
+
   async login({request, response, auth}) {
-    const {email, password} = request.only(['email', 'password'])
-    const token = await auth.attempt(email, password)
-    return response.json(token)
+    const {refreshToken, email, password} = request.all()
+    if (refreshToken) {
+      const res = await auth.generateForRefreshToken(refreshToken)
+      return response.json(res)
+    } else {
+      const token = await auth.withRefreshToken().attempt(email, password)
+      return response.json(token)
+    }
   }
 
   async loggedIn({response, auth}) {
     try {
-      const user = await auth.getUser()
-      return {
-        id: user.id,
-        state: true
+      if (auth.check()){
+        const user = await auth.getUser()
+        return {
+          id: user.id,
+          state: true
+        }
       }
     } catch (error) {
       return response.json({state: false})
     }
   }
+
+  async logout({request, response, auth}) {
+    try {
+      const {refreshToken} = request.all()
+      await auth
+        .authenticator('jwt')
+        .revokeTokens([refreshToken])
+      return response.send({message: "Token revoked"})
+    } catch (error) {
+      return error
+    }
+  }
+
 
   async loginCheck({auth}) {
     try {
