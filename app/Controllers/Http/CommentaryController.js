@@ -24,7 +24,7 @@ class CommentaryController {
     }
 
 
-    const {publication_id, user_id, title, content} = request.all()
+    const {publication_id, user_id, title, content} = request.only(['publication_id','user_id','title','content'])
     const comment = new Commentary()
     comment.fill({
       publication_id,

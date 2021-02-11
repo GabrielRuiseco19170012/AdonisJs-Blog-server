@@ -28,8 +28,8 @@ Route.get('loggedIn', 'UserController.loggedIn')
 Route.get('loginCheck', 'UserController.loginCheck')
 Route.post('logout', 'UserController.logout').middleware('auth')
 // Read
-Route.get('getuser/:id', 'UserController.show').middleware(['auth', 'FindUser'])
-Route.get('getallusers', 'UserController.index').middleware('auth')
+Route.get('getUser/:id', 'UserController.show').middleware(['auth', 'FindUser'])
+Route.get('getAllUsers', 'UserController.index').middleware('auth')
 // Update
 Route.put('update/:id', 'UserController.update').middleware(['auth', 'FindUser'])
 // Delete

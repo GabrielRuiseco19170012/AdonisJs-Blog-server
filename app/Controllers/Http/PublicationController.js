@@ -18,7 +18,7 @@ class PublicationController {
   }
 
   async insertPublications({request, response}) {
-    const {user_id, title, content} = request.all()
+    const {user_id, title, content} = request.only(['user_id', 'title','content'])
     const newPublication = new Publication()
 
     newPublication.fill({

@@ -8,8 +8,8 @@ class PublicationSchema extends Schema {
     this.create('publications', (table) => {
       table.increments()
       table.integer('user_id').unsigned().references('id').inTable('users').onDelete('CASCADE')
-      table.string('title', 80).notNullable()
-      table.string('content', 80).notNullable()
+      table.string('title', 120).notNullable()
+      table.string('content', 1200).notNullable()
       table.timestamps()
     })
   }
