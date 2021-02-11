@@ -59,8 +59,7 @@ Route.group(() => {
   Route.get('show/comments', 'CommentaryController.showAllCommentary')
   Route.get('show/publication/comments', 'CommentaryController.showCommentaryPublication')
 //Update commentary
-  Route.put('update/title', 'CommentaryController.updateCommentaryTitle')
-  Route.post('update/content', 'CommentaryController.updateCommentaryContent')
+  Route.put('update/comment', 'CommentaryController.update')
 //Delete commentary
   Route.delete('delete/commentary', 'CommentaryController.deleteCommentary')
 

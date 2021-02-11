@@ -53,7 +53,7 @@ class CommentaryController {
     const comment = await Commentary.find(id)
     comment.delete()
     await comment.save()
-    return response.status(200).send("Deleted")
+    return response.status(200).send({status:"Deleted"})
 
   }
 
@@ -145,6 +145,19 @@ class CommentaryController {
     const comment = await Database.from('commentaries').where('publication_id', publication_id)
     return response.status(200).json(comment)
 
+  }
+
+  async update({request, response}) {
+    try {
+      const data = request.only(['id', 'title', 'content']);
+      const comment = await Commentary.find(data.id)
+      comment.title = data.title
+      comment.content = data.content
+      await comment.save();
+      return response.status(200).json(comment);
+    } catch (e) {
+      return response.status(400).send({'Error': e.toString()});
+    }
   }
 
 }
